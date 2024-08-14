@@ -1,3 +1,4 @@
+import { AttachmentOptions, ContentType } from 'allure-js-commons';
 import { StatusCodes } from 'http-status-codes';
 import { EnvManager } from '../Infrastructure/Env/EnvManager';
 import { FileManager } from '../Infrastructure/FileSystem/FileManager';
@@ -8,7 +9,6 @@ import ReporterAllureUtils from '../Infrastructure/Utils/ReporterAllureUtils';
 import TestDataOutputUtils from '../Infrastructure/Utils/TestDataOutputUtils';
 import TimeUtils from '../Infrastructure/Utils/TimeUtils';
 import { UrlUtils } from '../Infrastructure/Utils/UrlUtil';
-import { AttachmentOptions, ContentType } from 'allure-js-commons';
 import { UiContextValues } from '../Common/UiContextValues';
 import ProjectUiContext from '../Common/ProjectUiContext';
 

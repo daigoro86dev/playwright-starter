@@ -98,6 +98,8 @@ dynamically build.
 
 - **PW_SCREENSHOT_ON_FAIL**: takes screenshot if test status equals failure, should be enabled by default on all pipelines except Development Pipeline (PW_CORE_E2E_TESTS)
 
+- **PW_EXPORT_DATA**: exports all data captured on the in-memory ProjectUIContext map storage into a json file
+
 #### **Pipeline Execution**
 
 - The pipeline Jenkinsfile is set to optimize available resources and execute up to the **shards * workers** tests in parallel. The pipeline is flexible and multiple combinations of resource allocation, environment and browsers are possible. Additionaly it's possible to persist screenshots, project data in JSON format and Playwright tracing zip files.  

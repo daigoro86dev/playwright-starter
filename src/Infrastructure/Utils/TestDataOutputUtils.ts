@@ -5,7 +5,7 @@ import { EnvManager } from '../Env/EnvManager';
 
 export default class TestDataOutputUtils {
     private static ConvertTSMapToJSObj(tsMap: Map<string, unknown>) {
-        const jsObj = {};
+        const jsObj: Record<string, unknown> = {};
         tsMap.forEach(function (value, key) {
             jsObj[key] = value;
         });
