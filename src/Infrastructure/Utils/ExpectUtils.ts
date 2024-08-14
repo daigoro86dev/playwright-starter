@@ -3,7 +3,7 @@ import TimeUtils from './TimeUtils';
 
 export default class ExpectUtils {
     static async VerifyText(textLocator: Locator, message: string) {
-        expect((await textLocator.textContent()).clearWhiteSpace()).toEqual(message);
+        expect((await textLocator.textContent())?.clearWhiteSpace()).toEqual(message);
     }
 
     static async ExpectToPass(fn: () => Promise<void>) {

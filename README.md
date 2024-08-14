@@ -42,6 +42,8 @@ use the test runner.
 
 - **test-results**: default folder for other test reports
 
+- **.husky**: Husky setup
+
 ### Test Organization and Setup
 
 - **Custom Fixture Usage**: custom fixtures are allocated to specific test groups in order to optimize the resources for test execution. Each test group should opperate as a self contained unit and shouldn't make use of what it doesn't need. To this end, each spec file makes use of a custom fixture made by the merge of a generic test management fixture and a group specific fixture. The custom fixture file will also import the paramters data loaded through its specific JSON file from **Data\TestParams** and export that data through the const **testParams**.
