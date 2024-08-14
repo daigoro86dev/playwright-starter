@@ -1,0 +1,8 @@
+Data/TestParams
+allure-results/
+test-results/
+TestDataExports/
+README.md
+package.json
+package-lock.json
+pnpm-lock.json

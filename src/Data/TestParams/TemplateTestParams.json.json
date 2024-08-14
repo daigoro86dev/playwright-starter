@@ -1,0 +1,10 @@
+{
+    "params": {
+        "Login user": [
+            {"username": "demo", "password":"demo"}
+        ],
+        "Direct to home page": [
+            {"username": "demo", "password":"demo"}
+        ]
+    }
+}
