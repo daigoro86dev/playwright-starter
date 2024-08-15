@@ -46,15 +46,15 @@ use the test runner.
 
 ### Test Organization and Setup
 
-- **Custom Fixture Usage**: custom fixtures are allocated to specific test groups in order to optimize the resources for test execution. Each test group should opperate as a self contained unit and shouldn't make use of what it doesn't need. To this end, each spec file makes use of a custom fixture made by the merge of a generic test management fixture and a group specific fixture. The custom fixture file will also import the paramters data loaded through its specific JSON file from **Data\TestParams** and export that data through the const **testParams**.
+- **Custom Fixture Usage**: custom fixtures are allocated to specific test groups in order to optimize the resources for test execution. Each test group should opperate as a self contained unit and shouldn't make use of what it doesn't need. To this end, each spec file makes use of a custom fixture made by the merge of a generic test management fixture and a group specific fixture. The custom fixture file will also import the paramters data loaded through its specific JSON file from **src/Data/TestParams** and export that data through the const **testParams**.
 
-- **Parameter Setup**: each test scenario can be made up of a single or multiple test cases, depending on the amount of sets of parameters allocated. **String extensions** are responsible for reading, parsing and building the specific test case based on the array of parameters sets provided. **The convention is to allocate a specific JSON file to each spec file which in turn uses the test description as the key to the array of parameters values to be used.**. Paramter files are to be stored on **Data\TestParams** and loaded through the respective custom test fixture.
+- **Parameter Setup**: each test scenario can be made up of a single or multiple test cases, depending on the amount of sets of parameters allocated. **String extensions** are responsible for reading, parsing and building the specific test case based on the array of parameters sets provided. **The convention is to allocate a specific JSON file to each spec file which in turn uses the test description as the key to the array of parameters values to be used.**. Paramter files are to be stored on **src/Data/TestParams** and loaded through the respective custom test fixture.
 
 - **Dependency Chain**: each scenario is made up of individual steps. These steps may or may not accept parameters (**strings, booleans or numbers**) and each step will **instantiate one or multiple base dependencies** (page objects or api handlers). Additionaly, each step can make use of the ProjectUIContext singleton to retrieve data from / share data with other steps, as well as make use of static methods for some sort of data transformation.
 
 - **Before & After each routines**: each test will annotate the suite name before running so it's displayed on the allure reporter. Additionally in some cases a ProjectUIContext data cleanup is executed. After each test executes, depending on the test result and environment variables, a full page screenshot is taken and test specific data is stored on a JSON file and included as a report artifact.
 
-- **Environment Selection**: tests are set to run on devqa or staging environments. On the CLI this can be set through ```EXPORT NODE_ENV="<envname>"``` (bash) or ```$env:NODE_ENV="<envname>"``` (powershell). Alternatively this can bet set programmatically by switching the value on **Infrastructure\Env\EnvManager.ts**. On Jenkins this will be defined as an environemnt variable (**ENV**) defaulting to a pipeline specific value. Constant values such as the global timeout can bet set on **Common\Constants.ts**.
+- **Environment Selection**: tests are set to run on devqa or staging environments. On the CLI this can be set through ```EXPORT NODE_ENV="<envname>"``` (bash) or ```$env:NODE_ENV="<envname>"``` (powershell). Alternatively this can bet set programmatically by switching the value on **src/Infrastructure/Env/EnvManager.ts**. On Jenkins this will be defined as an environemnt variable (**ENV**) defaulting to a pipeline specific value. Constant values such as the global timeout can bet set on **src/Common/Constants.ts**.
 
 ### Lint & Format upon commit toolchain
   
@@ -69,10 +69,10 @@ use the test runner.
 
 #### Setup
   
-- **Husky**: folder **.husky** must be set on project root. In this case that will be **flow_qa_ui_tests/.husky**. There are several ways to configure this as per documentation (manual or through npx husky). Husky will execute the **lint-staged** configuration as set on package.json throught lint-staged which is set on the **flow_qa_ui_tests/.husky/pre-commit** hook.
+- **Husky**: folder **.husky** must be set on project root. There are several ways to configure this as per documentation (manual or through npx husky). Husky will execute the **lint-staged** configuration as set on package.json throught lint-staged which is set on the **.husky/pre-commit** hook.
 - **Prettier**: rules are set though **.prettierrc.json** and files to be ignored by the formatter are set on **.prettierignore.json**. For vscode users it is recommended the installation of <https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode> and set it as the default formatter for the project.
 - **ESLint**: rules are set though **.eslintrc.json** and files to be ignored by the linter are set on **.eslintignore.json**. For vscode users it is recommended the installation of <https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint>.
-- **commitlint**: this will enforce the conventional configuration upon commits as recommended on <https://www.conventionalcommits.org/en/v1.0.0/#summary>. The standard is set on **.commitlintrc.json** and triggered through the **flow_qa_ui_tests/.husky/pre-commit** hook. If the commit message doesn't follow the conventions the commit itself will fail.
+- **commitlint**: this will enforce the conventional configuration upon commits as recommended on <https://www.conventionalcommits.org/en/v1.0.0/#summary>. The standard is set on **.commitlintrc.json** and triggered through the **.husky/pre-commit** hook. If the commit message doesn't follow the conventions the commit itself will fail.
 
 #### Addtional Information
 
@@ -98,7 +98,7 @@ dynamically build.
 
 - **PW_TRACE**: generate of Playwright tracing file for each test retry
 
-- **PW_SCREENSHOT_ON_FAIL**: takes screenshot if test status equals failure, should be enabled by default on all pipelines except Development Pipeline (PW_CORE_E2E_TESTS)
+- **PW_SCREENSHOT_ON_FAIL**: takes screenshot if test status equals failure
 
 - **PW_EXPORT_DATA**: exports all data captured on the in-memory ProjectUIContext map storage into a json file
 

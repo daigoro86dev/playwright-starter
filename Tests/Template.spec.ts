@@ -9,7 +9,6 @@ test.afterEach(async ({ testManagementSteps }) => {
     await testManagementSteps.addTestDataToReporter();
 });
 
-// this is a test
 'Login user'.exec((s) => {
     s.runLoop(testParams, async (p) => {
         test(s.setTitle(p), { tag: ['@TemplateDemo'] }, async ({ _ }) => {
