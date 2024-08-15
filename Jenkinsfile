@@ -52,15 +52,6 @@ pipeline {
             }
             cleanWs()
         }
-        // failure {
-        //     slackSend(channel: "$SLACK_CHANNELS", color: "danger", message: ":scream: Failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (<${env.BUILD_URL}|Open>)")
-        // }
-        // success {
-        //     slackSend(channel: "$SLACK_CHANNELS", color: "good", message: ":smiley: Passed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (<${env.BUILD_URL}|Open>)")
-        // }
-        // unstable {
-        //     slackSend(channel: "$SLACK_CHANNELS", color: "warning", message: ":cold_sweat: Unstable: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (<${env.BUILD_URL}|Open>)")
-        // }
     }
 }
 
