@@ -7,7 +7,7 @@
 
 - Install **pnpm** <https://pnpm.io/installation> (plain npm or yarn are also supported but scripts will have to be adjusted)
 - ```pnpm i```
-- On CI: ```npm i --prod``` will ignore dev dependencies
+- On CI: ```pnpm i --prod``` will ignore dev dependencies
 
 ### Execution
 
