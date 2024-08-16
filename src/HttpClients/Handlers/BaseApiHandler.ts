@@ -15,9 +15,9 @@ export default class BaseApiHandler extends BaseApiHandlerDependency {
         this.envValues = FileManager.GetEnvValues();
     }
 
-    async setupModule<T extends AbstractModule, k>(
+    async setupModule<T extends AbstractModule, K>(
         m: { new (apiRequestContext: APIRequestContext): T },
-        fn: (m: T) => Promise<CustomResponse<k>>,
+        fn: (m: T) => Promise<CustomResponse<K>>,
     ) {
         return fn(await this.apiClient!.setupModule(m));
     }
