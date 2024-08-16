@@ -10,8 +10,8 @@ export default class TemplateDemoApiHandler extends BaseApiHandler {
         this.apiClient = this.setupClient(`https://${this.envValues['TemplateApiBase']}`);
     }
 
-    private async setupTemplateDemoApiModule<T>(fn: (t: TemplateDemoApiModule) => Promise<CustomResponse<T>>) {
-        return await this.setupModule(TemplateDemoApiModule, async (t) => await fn(t));
+    private async setupTemplateDemoApiModule<T>(fn: (m: TemplateDemoApiModule) => Promise<CustomResponse<T>>) {
+        return await this.setupModule(TemplateDemoApiModule, async (m) => await fn(m));
     }
 
     async login(user: UserLoginRequest) {

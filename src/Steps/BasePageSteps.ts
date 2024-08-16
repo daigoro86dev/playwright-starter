@@ -3,6 +3,7 @@ import BasePageDependency from '../Common/BasePageDependency';
 import { GenericPageConstructor } from '../Common/GenericConstructors';
 import BaseSteps from './BaseSteps';
 import BaseApiClientDependency from '../Common/BaseApiHandlerDependency';
+import TemplateDemoLoginPage from '../PageObjects/TemplateDemoLoginPage';
 
 export default class BasePageSteps extends BaseSteps {
     constructor(private readonly page: Page) {
@@ -13,7 +14,7 @@ export default class BasePageSteps extends BaseSteps {
         return new this(page) as T;
     }
 
-    protected async run<T extends BasePageDependency>(
+    private async run<T extends BasePageDependency>(
         instanceType: new (page: Page) => T,
         fn: (p: T) => Promise<void>,
     ): Promise<void> {
@@ -27,7 +28,7 @@ export default class BasePageSteps extends BaseSteps {
         await fn(new instanceType(this.page.context().request));
     }
 
-    protected getPage() {
-        return this.page;
+    protected async runTemplateDemoLoginPage(fn: (p: TemplateDemoLoginPage) => Promise<void>) {
+        return await this.run(TemplateDemoLoginPage, async (p) => fn(p));
     }
 }
