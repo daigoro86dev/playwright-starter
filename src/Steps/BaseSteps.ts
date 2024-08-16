@@ -10,7 +10,7 @@ import TestDataOutputUtils from '../Infrastructure/Utils/TestDataOutputUtils';
 import TimeUtils from '../Infrastructure/Utils/TimeUtils';
 import { UrlUtils } from '../Infrastructure/Utils/UrlUtil';
 import { UiContextValues } from '../Common/UiContextValues';
-import ProjectUiContext from '../Common/ProjectUiContext';
+import ProjectDataStore from '../Common/ProjectDataStore';
 
 export default class BaseSteps {
     private static Allure: ReporterAllureUtils;
@@ -33,15 +33,15 @@ export default class BaseSteps {
     }
 
     protected getStoreVal<T>(key: UiContextValues) {
-        return ProjectUiContext.GetInstance().getStoreVal<T>(key);
+        return ProjectDataStore.GetInstance().getStoreVal<T>(key);
     }
 
     protected setStoreKeyVal<T>(key: UiContextValues, value: T) {
-        return ProjectUiContext.GetInstance().setStoreKeyVal<T>(key, value);
+        return ProjectDataStore.GetInstance().setStoreKeyVal<T>(key, value);
     }
 
     protected getStoreMap() {
-        return ProjectUiContext.GetInstance().getStoreMap();
+        return ProjectDataStore.GetInstance().getStoreMap();
     }
 
     protected async expectToPass(fn: () => Promise<void>) {

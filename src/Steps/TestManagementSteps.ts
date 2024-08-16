@@ -1,6 +1,6 @@
 import { Page, TestInfo } from '@playwright/test';
 import BaseSteps from './BaseSteps';
-import ProjectUiContext from '../Common/ProjectUiContext';
+import ProjectDataStore from '../Common/ProjectDataStore';
 
 export default class TestManagementSteps extends BaseSteps {
     private testInfo?: TestInfo;
@@ -42,7 +42,7 @@ export default class TestManagementSteps extends BaseSteps {
     }
 
     cleanStoreValues() {
-        ProjectUiContext.CleanStoreValues();
+        ProjectDataStore.CleanStoreValues();
     }
 
     exportTestDataToJson() {

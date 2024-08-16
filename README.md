@@ -32,7 +32,7 @@ use the test runner.
 
 - **src/PageObjects**: classes which abstract properties and behaviour of the different pages used in test scenarios, all pages extend a BasePage class.
 
-- **src/Steps**: Individual units of execution with a test scenario, which may include one or multiple actions as well as parameters. These actions can be UI interactions, requests to external APIs or a mix of both. Each step can refer to data outside its scope through the singleton instance of the **ProjectUIContext** and pass along data to other steps through it. Each step has a description which will be included in the allure report. All steps extend a BaseSteps class which defines methods for dependency instantiation and data sharing.
+- **src/Steps**: Individual units of execution with a test scenario, which may include one or multiple actions as well as parameters. These actions can be UI interactions, requests to external APIs or a mix of both. Each step can refer to data outside its scope through the singleton instance of the **ProjectDataStore** and pass along data to other steps through it. Each step has a description which will be included in the allure report. All steps extend a BaseSteps class which defines methods for dependency instantiation and data sharing.
 
 - **TestDataExports**: Folder used to save all data generated and used throughout tests in JSON format. Mostly for local usage.
 
@@ -50,11 +50,11 @@ use the test runner.
 
 - **Parameter Setup**: each test scenario can be made up of a single or multiple test cases, depending on the amount of sets of parameters allocated. **String extensions** are responsible for reading, parsing and building the specific test case based on the array of parameters sets provided. **The convention is to allocate a specific JSON file to each spec file which in turn uses the test description as the key to the array of parameters values to be used.**. Paramter files are to be stored on **src/Data/TestParams** and loaded through the respective custom test fixture.
 
-- **Dependency Chain**: each scenario is made up of individual steps. These steps may or may not accept parameters (**strings, booleans or numbers**) and each step will **instantiate one or multiple base dependencies** (page objects or api handlers). Additionaly, each step can make use of the ProjectUIContext singleton to retrieve data from / share data with other steps, as well as make use of static methods for some sort of data transformation.
+- **Dependency Chain**: each scenario is made up of individual steps. These steps may or may not accept parameters (**strings, booleans or numbers**) and each step will **instantiate one or multiple base dependencies** (page objects or api handlers). Additionaly, each step can make use of the ProjectDataStore singleton to retrieve data from / share data with other steps, as well as make use of static methods for some sort of data transformation.
 
-- **Before & After each routines**: each test will annotate the suite name before running so it's displayed on the allure reporter. Additionally in some cases a ProjectUIContext data cleanup is executed. After each test executes, depending on the test result and environment variables, a full page screenshot is taken and test specific data is stored on a JSON file and included as a report artifact.
+- **Before & After each routines**: each test will annotate the suite name before running so it's displayed on the allure reporter. Additionally in some cases a ProjectDataStore data cleanup is executed. After each test executes, depending on the test result and environment variables, a full page screenshot is taken and test specific data is stored on a JSON file and included as a report artifact.
 
-- **Environment Selection**: tests are set to run on devqa or staging environments. On the CLI this can be set through ```EXPORT NODE_ENV="<envname>"``` (bash) or ```$env:NODE_ENV="<envname>"``` (powershell). Alternatively this can bet set programmatically by switching the value on **src/Infrastructure/Env/EnvManager.ts**. On Jenkins this will be defined as an environemnt variable (**ENV**) defaulting to a pipeline specific value. Constant values such as the global timeout can bet set on **src/Common/Constants.ts**.
+- **Environment Selection**: tests are set to run on devqa or staging environments. On the CLI this can be set through ```EXPORT NODE_ENV="<envname>"``` (bash) or ```$env:NODE_ENV="<envname>"``` (powershell). Alternatively this can bet set programmatically by switching the value on **src/Infrastructure/Env/EnvManager.ts**. On Jenkins this will be defined as an environemnt variable (**NODE_ENV**) defaulting to a pipeline specific value. Constant values such as the global timeout can bet set on **src/Common/Constants.ts**.
 
 ### Lint & Format upon commit toolchain
   
@@ -77,7 +77,7 @@ use the test runner.
 #### Addtional Information
 
 - These dependencies are not installed on CI.
-- It possible to run the linter before commit through **npm run lint**. However this will only raise linter issues and won't apply any formatting.
+- It possible to run the linter before commit through **pnpm run lint**. However this will only raise linter issues and won't apply any formatting.
 
 ### Jenkins
 
@@ -100,7 +100,7 @@ dynamically build.
 
 - **PW_SCREENSHOT_ON_FAIL**: takes screenshot if test status equals failure
 
-- **PW_EXPORT_DATA**: exports all data captured on the in-memory ProjectUIContext map storage into a json file
+- **PW_EXPORT_DATA**: exports all data captured on the in-memory ProjectDataStore map storage into a json file
 
 #### **Pipeline Execution**
 

@@ -1,6 +1,6 @@
 import { writeFile } from 'node:fs';
 import { TestInfo } from '@playwright/test';
-import ProjectUiContext from '../../Common/ProjectUiContext';
+import ProjectDataStore from '../../Common/ProjectDataStore';
 import { EnvManager } from '../Env/EnvManager';
 
 export default class TestDataOutputUtils {
@@ -13,7 +13,7 @@ export default class TestDataOutputUtils {
     }
 
     private static PrepareData(testInfo: TestInfo) {
-        const map = ProjectUiContext.GetInstance().getStoreMap();
+        const map = ProjectDataStore.GetInstance().getStoreMap();
         const data = {
             testTitle: `${testInfo.title}`,
             env: EnvManager.GetEnv(),
