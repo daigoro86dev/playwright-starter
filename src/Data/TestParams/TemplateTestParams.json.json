@@ -3,7 +3,7 @@
         "Login user": [
             {"username": "demo", "password":"demo"}
         ],
-        "Direct to home page": [
+        "Login User API": [
             {"username": "demo", "password":"demo"}
         ]
     }

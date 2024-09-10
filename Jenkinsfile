@@ -6,9 +6,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 30, unit: 'MINUTES')
     }
-    agent {
-        agent { docker { image 'mcr.microsoft.com/playwright:v1.43.0-jammy' } }
-    }
+    agent { docker { image 'mcr.microsoft.com/playwright:v1.43.0-jammy' } }
     environment {
         NODE_ENV = "${env.NODE_ENV}"
         PW_PROJECT= "${env.PW_PROJECT}"
@@ -16,6 +14,9 @@ pipeline {
         PW_SHARDS = "${env.PW_SHARDS}"
         PW_TAG = "${env.PW_TAG}"
         PW_SCREENSHOT_ON_FAIL = "${env.PW_SCREENSHOT_ON_FAIL}"
+        TR_DOMAIN = "${env.TR_DOMAIN}"
+        TR_USERNAME = "${env.TR_USERNAME}"
+        TR_PASSWORD = "${env.PASSWORD}"
         USE_ALLURE = 1
     }
     stages {

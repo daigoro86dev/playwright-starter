@@ -6,6 +6,13 @@ import { Constants } from './src/Common/Constants';
  * See https://playwright.dev/docs/test-configuration.
  */
 
+const testRailOptions = {
+    // Whether to add <properties> with all annotations; default is false
+    embedAnnotationsAsProperties: true,
+    // Where to put the report.
+    outputFile: './test-results/junit-report.xml',
+};
+
 export default defineConfig({
     testDir: './Tests',
     /* Run tests in files in parallel */
@@ -23,19 +30,20 @@ export default defineConfig({
         timeout: Constants.expectTimeout,
     },
     reporter: [
-        process.env.USE_ALLURE === '1'
-            ? [
-                  'allure-playwright',
-                  {
-                      detail: true,
-                      suiteTitle: false,
-                      environmentInfo: {
-                          tag: process.env.PW_TAG,
-                          environment: process.env.ENV,
-                      },
-                  },
-              ]
-            : ['null'],
+        // process.env.USE_ALLURE === '1'
+        //     ? [
+        //           'allure-playwright',
+        //           {
+        //               detail: true,
+        //               suiteTitle: false,
+        //               environmentInfo: {
+        //                   tag: process.env.PW_TAG,
+        //                   environment: process.env.ENV,
+        //               },
+        //           },
+        //       ]
+        //     : ['null'],
+        ['junit', testRailOptions],
     ],
     use: {
         trace: process.env.PW_TRACE === '1' ? 'on-all-retries' : 'off',

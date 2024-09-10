@@ -8,10 +8,14 @@ test.afterEach(async ({ testManagementSteps }) => {
     await testManagementSteps.addTestDataToReporter();
 });
 
-'Login user'.exec((s) => {
-    s.runLoop(testParams, async (p) => {
-        test(s.setTitle(p), { tag: ['@TemplateDemoAPI'] }, async ({ _ }) => {
-            await _.templateDemoApiSteps.loginuser();
+test.describe('API Tests', async () => {
+    'Login User API'.exec((s) => {
+        s.runLoop(testParams, async (p) => {
+            test(s.setTitle(p), { tag: ['@TemplateDemo'] }, async ({ _ }) => {
+                await test.step('Login through API', async () => {
+                    await _.templateDemoApiSteps.loginuser();
+                });
+            });
         });
     });
 });

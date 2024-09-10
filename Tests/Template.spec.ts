@@ -9,11 +9,13 @@ test.afterEach(async ({ testManagementSteps }) => {
     await testManagementSteps.addTestDataToReporter();
 });
 
-'Login user'.exec((s) => {
-    s.runLoop(testParams, async (p) => {
-        test(s.setTitle(p), { tag: ['@TemplateDemo'] }, async ({ _ }) => {
-            await _.templateDemoSteps.goToLoginPage();
-            await _.templateDemoSteps.loginuser(p.username, p.password);
+test.describe('UI Tests', () => {
+    'Login user'.exec((s) => {
+        s.runLoop(testParams, async (p) => {
+            test(s.setTitle(p), { tag: ['@TemplateDemo'] }, async ({ _ }) => {
+                await _.templateDemoSteps.goToLoginPage();
+                await _.templateDemoSteps.loginuser(p.username, p.password);
+            });
         });
     });
 });
